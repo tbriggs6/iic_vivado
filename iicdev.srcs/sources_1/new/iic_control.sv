@@ -31,13 +31,16 @@ modport ctrl (input on, send_start,
 endinterface
 
 
-typedef enum logic[6:0] { OFF, IDLE, MASTER_START, SLAVE_START } iic_ctrl_state_t;
+typedef enum logic[6:0] { OFF, IDLE, MASTER_START, MASTER_WACK1, SLAVE_START } iic_ctrl_state_t;
 
 module iic_control(
     input wire clk, aresetn,
     
     iic_ctrl2regs_if.ctrl regs,
-    iic_sdetect_if.ctrl sdetect
+    iic_clock_if.ctrl sclk,
+    iic_sgen_if.ctrl sgen,
+    iic_sdetect_if.ctrl sdetect,
+    iic_driver_mux_if.ctrl dmux
     );
     
 
@@ -50,6 +53,14 @@ always @(posedge clk) begin
         state <= OFF;
         master <= 0;
         
+        // reset devices
+        sgen.gen_stop = 0;
+        sgen.gen_start = 0;
+        sclk.clock_reset = 0;
+        sclk.clock_restart = 0;
+        sclk.clock_out_enable = 0;
+        
+        
     end else begin
     
     case(state)
@@ -59,6 +70,12 @@ always @(posedge clk) begin
     end
     
     IDLE: begin
+        sclk.clock_restart <= 0;
+        sclk.clock_out_enable <= 0;
+        sclk.clock_reset <= 1;
+        
+        dmux.drive_sgen <= 0;
+        
         if (sdetect.start_detected)
             state <= SLAVE_START;
         else if (regs.send_start)
@@ -71,8 +88,20 @@ always @(posedge clk) begin
     
     MASTER_START: begin
         $display("Master start started. %d", $time);
+        sclk.clock_restart <= 0;
+        sclk.clock_out_enable <= 0;
+        sclk.clock_reset <= 0;
+        
+        dmux.drive_sgen <= 1;
+        
+        sgen.gen_start <= 1;
+        if (sclk.clock_done == 1) state <= MASTER_WACK1;
+        
     end
-    
+
+    MASTER_WACK1: begin
+       $finish; 
+    end    
     
     default:
         state <= OFF;

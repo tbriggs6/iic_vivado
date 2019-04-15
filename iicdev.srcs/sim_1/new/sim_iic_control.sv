@@ -3,7 +3,8 @@
 
 module sim_iic_control(   );
     
-    reg iic_sda, iic_scl, iic_active;
+    wire iic_sda, iic_scl;
+    reg iic_active;
     wire sda, scl;
     
     assign sda = (iic_active) ? iic_sda : 1'bz;
@@ -11,15 +12,30 @@ module sim_iic_control(   );
     
     logic clk, aresetn;
     
+    iic_clock_if clockif( );
+    iic_clock clock( .clk(clk), .aresetn(aresetn),
+        .iic_sda(iic_sda), .controller(clockif), .divider(clockif));
+
+    iic_sgen_if sgenif( );
+    iic_sgen sgen( .clk(clk), .aresetn(aresetn),
+        .iic_sda(iic_sda), .iic_scl(iic_scl), .sgen(sgenif));
     
     iic_sdetect_if detector( );
     iic_sdetect sdetect ( .sda(sda), .scl(scl), .clk(clk), 
         .aresetn(aresetn), .detector(detector) );
     
+    iic_driver_mux_if dmux( );
+    iic_driver_mux driver_mux (
+        .iic_sda(iic_sda), .iic_scl(iic_scl), .mux(dmux)   );
+        
     iic_ctrl2regs_if regs( );
     iic_control ctrl ( .clk(clk), .aresetn(aresetn), 
-        .regs(regs), .sdetect(detector) );
+        .regs(regs), .sclk(clockif), .sgen(sgenif), .sdetect(detector),
+        .dmux(dmux) );
     
+    
+    // set the clock divider to 6
+    assign clockif.clock_divider = 6;
     
     // drive the clk     
     initial begin
@@ -34,6 +50,8 @@ module sim_iic_control(   );
     initial begin
         iic_active = 0;
         aresetn = 0;
+        regs.send_start = 0;
+        
         #10;
         @(negedge clk);
         aresetn = 1;
@@ -43,11 +61,8 @@ module sim_iic_control(   );
         
         @(negedge clk);
         assert(ctrl.state == IDLE) else $error("Control didn't turn on");
+        regs.send_start = 1;
         
-        // drive a start bit
-        iic_active <= 1;
-        iic_scl <= 1;
-        iic_sda <= 0;        
         
         @(negedge clk);
         assert(detector.start_detected == 1) else $error("Did not detect a start.");
