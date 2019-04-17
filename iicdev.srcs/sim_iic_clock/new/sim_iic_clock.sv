@@ -49,20 +49,20 @@ initial begin
     #15;
     @(negedge clk);
     
-    clockif.regs.clock_divider = 4;
-    clockif.ctrl.clock_restart = 1;
-    clockif.ctrl.clock_reset = 1 ;
+    clockif.clock_divider = 4;
+    clockif.clock_restart = 1;
+    clockif.clock_reset = 1 ;
     clockif.clock_out_enable = 0;
     @(negedge clk);
     @(negedge clk);
-    clockif.ctrl.clock_reset = 0;
+    clockif.clock_reset = 0;
     
-    @(posedge clockif.ctrl.clock_out);
-    @(posedge clockif.ctrl.clock_out);
-    clockif.ctrl.clock_restart = 0;
+    @(posedge clockif.clock_out);
+    @(posedge clockif.clock_out);
+    clockif.clock_restart = 0;
     
     for (int i = 0; i < 12; i++) begin
-        #1 assert (clockif.ctrl.clock_out == 1) 
+        #1 assert (clockif.clock_out == 1) 
             else $error("clock should stay high after cycle complete.");
     end
     

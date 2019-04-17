@@ -5,8 +5,13 @@
 interface iic_sdetect_if;
 logic start_detected, stop_detected;
 
+// modports named for the perspective of the device making the connection
+
+// from the perspective of the control unit
 modport ctrl (input start_detected, stop_detected);
-modport detector (output start_detected, stop_detected );
+
+modport sdetect (output start_detected, stop_detected);
+
 endinterface
 
 
@@ -17,7 +22,7 @@ module iic_sdetect(
     input wire scl, 
     input wire sda,
     
-    iic_sdetect_if.detector detector
+    iic_sdetect_if.sdetect ctrl
     );
 
 logic last_sda;
@@ -44,7 +49,7 @@ always @(posedge clk) begin
     end // end else
 end // end always block    
 
-assign detector.start_detected = start_detected;
-assign detector.stop_detected = stop_detected;
+assign ctrl.start_detected = start_detected;
+assign ctrl.stop_detected = stop_detected;
     
 endmodule
