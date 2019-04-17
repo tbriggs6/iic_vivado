@@ -1,23 +1,5 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 04/12/2019 02:26:45 PM
-// Design Name: 
-// Module Name: iic_control
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
+`default_nettype none
 
 typedef enum logic[6:0] { OFF, IDLE, MASTER_START, MASTER_SEND_ADDR, SLAVE_START } iic_ctrl_state_t;
 
@@ -25,18 +7,22 @@ typedef enum logic[6:0] { OFF, IDLE, MASTER_START, MASTER_SEND_ADDR, SLAVE_START
 module iic_control(
     input wire clk, aresetn,
     
-    iic_regs_ctrl_if.ctrl regs,
-    iic_clock_if.ctrl sclk, 
-    iic_sgen_if.ctrl sgen,
-    iic_sdetect_if.ctrl sdetect,
-    iic_driver_mux_if.ctrl dmux
+    clock_control_bus.ctrl clkd,
+    control_driver_bus.ctrl driver,
+    control_regs_bus.ctrl regs,
+    control_sdetect_bus.ctrl serial
     );
     
 iic_ctrl_state_t state = OFF;
     
 always @(posedge clk) begin
     if (aresetn == 0) begin
-        state <= OFF;    
+        state <= OFF;
+        
+        clkd.reset <= 0;
+        clkd.restart <= 0;
+        clkd.out_enable <= 0;
+            
     end else if (regs.on == 0) state <= OFF;                
     else case(state)
     OFF:
@@ -46,8 +32,8 @@ always @(posedge clk) begin
     IDLE:
         if (regs.start == 1) begin
             state <= MASTER_START;
-            sclk.clock_reset <= 1;
-            sclk.clock_restart <= 0;
+            clkd.reset <= 1;
+            clkd.restart <= 0;
         end
         else if (sdetect.start_detected == 1) state <= SLAVE_START;
         else state <= IDLE;

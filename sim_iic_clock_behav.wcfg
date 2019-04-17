@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="107649525fs"></ZoomEndTime>
-      <Cursor1Time time="61000000fs"></Cursor1Time>
+      <ZoomStartTime time="1136689fs"></ZoomStartTime>
+      <ZoomEndTime time="104172663fs"></ZoomEndTime>
+      <Cursor1Time time="87000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="236"></NameColumnWidth>
-      <ValueColumnWidth column_width="101"></ValueColumnWidth>
+      <ValueColumnWidth column_width="97"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="5" />
+   <WVObjectSize size="7" />
    <wvobject fp_name="/sim_iic_clock/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -32,39 +32,76 @@
       <obj_property name="ElementShortName">clock_count[9:0]</obj_property>
       <obj_property name="ObjectShortName">clock_count[9:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/sim_iic_clock/iic_sda" type="logic">
-      <obj_property name="ElementShortName">iic_sda</obj_property>
-      <obj_property name="ObjectShortName">iic_sda</obj_property>
+   <wvobject fp_name="group15" type="group">
+      <obj_property name="label">REGS</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_clock/regs/divider" type="array">
+         <obj_property name="ElementShortName">divider[9:0]</obj_property>
+         <obj_property name="ObjectShortName">divider[9:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_clock/regs/WIDTH" type="array">
+         <obj_property name="ElementShortName">WIDTH[31:0]</obj_property>
+         <obj_property name="ObjectShortName">WIDTH[31:0]</obj_property>
+      </wvobject>
    </wvobject>
-   <wvobject fp_name="group27" type="group">
-      <obj_property name="label">ClockIF</obj_property>
+   <wvobject fp_name="group21" type="group">
+      <obj_property name="label">CTRL</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject fp_name="/sim_iic_clock/clockif/clock_restart" type="logic">
-         <obj_property name="ElementShortName">clock_restart</obj_property>
-         <obj_property name="ObjectShortName">clock_restart</obj_property>
+      <wvobject fp_name="/sim_iic_clock/ctrl/restart" type="logic">
+         <obj_property name="ElementShortName">restart</obj_property>
+         <obj_property name="ObjectShortName">restart</obj_property>
       </wvobject>
-      <wvobject fp_name="/sim_iic_clock/clockif/clock_reset" type="logic">
-         <obj_property name="ElementShortName">clock_reset</obj_property>
-         <obj_property name="ObjectShortName">clock_reset</obj_property>
+      <wvobject fp_name="/sim_iic_clock/ctrl/reset" type="logic">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
       </wvobject>
-      <wvobject fp_name="/sim_iic_clock/clockif/clock_out_enable" type="logic">
-         <obj_property name="ElementShortName">clock_out_enable</obj_property>
-         <obj_property name="ObjectShortName">clock_out_enable</obj_property>
+      <wvobject fp_name="/sim_iic_clock/ctrl/done" type="logic">
+         <obj_property name="ElementShortName">done</obj_property>
+         <obj_property name="ObjectShortName">done</obj_property>
       </wvobject>
-      <wvobject fp_name="/sim_iic_clock/clockif/clock_out" type="logic">
-         <obj_property name="ElementShortName">clock_out</obj_property>
-         <obj_property name="ObjectShortName">clock_out</obj_property>
+      <wvobject fp_name="/sim_iic_clock/ctrl/scl" type="logic">
+         <obj_property name="ElementShortName">scl</obj_property>
+         <obj_property name="ObjectShortName">scl</obj_property>
       </wvobject>
-      <wvobject fp_name="/sim_iic_clock/clockif/clock_done" type="logic">
-         <obj_property name="ElementShortName">clock_done</obj_property>
-         <obj_property name="ObjectShortName">clock_done</obj_property>
+   </wvobject>
+   <wvobject fp_name="group24" type="group">
+      <obj_property name="label">DRVR</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/sim_iic_clock/drvr/scl" type="logic">
+         <obj_property name="ElementShortName">scl</obj_property>
+         <obj_property name="ObjectShortName">scl</obj_property>
       </wvobject>
-      <wvobject fp_name="/sim_iic_clock/clockif/clock_divider" type="array">
-         <obj_property name="ElementShortName">clock_divider[9:0]</obj_property>
-         <obj_property name="ObjectShortName">clock_divider[9:0]</obj_property>
+      <wvobject fp_name="/sim_iic_clock/drvr/sda" type="logic">
+         <obj_property name="ElementShortName">sda</obj_property>
+         <obj_property name="ObjectShortName">sda</obj_property>
       </wvobject>
-      <wvobject fp_name="/sim_iic_clock/clockif/WIDTH" type="array">
+   </wvobject>
+   <wvobject fp_name="group31" type="group">
+      <obj_property name="label">UUT</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_clock/uut/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_clock/uut/aresetn" type="logic">
+         <obj_property name="ElementShortName">aresetn</obj_property>
+         <obj_property name="ObjectShortName">aresetn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_clock/uut/clock_count" type="array">
+         <obj_property name="ElementShortName">clock_count[9:0]</obj_property>
+         <obj_property name="ObjectShortName">clock_count[9:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_clock/uut/scl" type="logic">
+         <obj_property name="ElementShortName">scl</obj_property>
+         <obj_property name="ObjectShortName">scl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_clock/uut/sda" type="logic">
+         <obj_property name="ElementShortName">sda</obj_property>
+         <obj_property name="ObjectShortName">sda</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_clock/uut/WIDTH" type="array">
          <obj_property name="ElementShortName">WIDTH[31:0]</obj_property>
          <obj_property name="ObjectShortName">WIDTH[31:0]</obj_property>
       </wvobject>

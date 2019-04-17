@@ -4,8 +4,8 @@
 module sim_sgen( );
 
 logic clk, aresetn;
-wire iic_sda;
-iic_sgen_if sgen( );
+control_sgen_bus ctrl();
+driver_sgen_bus drvr();
 
 iic_sgen uut(.*);
 
@@ -15,25 +15,22 @@ initial begin
 end
 
 assert property
-    (@(posedge clk) (sgen.gen_start === 1) |-> (iic_sda === 1'b0));
+    (@(posedge clk) $rose(ctrl.gen_start) |-> $fell(drvr.sda));
     
 assert property
-    (@(posedge clk) (sgen.gen_stop === 1) |-> (iic_sda !== 1'b1));
+    (@(posedge clk) $rose(ctrl.gen_stop) |-> (drvr.sda === 1'b1));
     
-assert property
-    (@(posedge clk) (sgen.gen_stop === 0) and (sgen.gen_start === 0) |-> (iic_sda === 1'bz));
-
 initial begin 
     aresetn = 0;
-    sgen.gen_stop = 0;
-    sgen.gen_start = 0;
+    ctrl.gen_stop = 0;
+    ctrl.gen_start = 0;
     
     #10;
     aresetn = 1;
-    sgen.gen_stop = 0;
-    sgen.gen_start = 1;
+    ctrl.gen_stop = 0;
+    ctrl.gen_start = 1;
     #10;
-    sgen.gen_start = 0;
+    ctrl.gen_start = 0;
     #10;
     $finish;
 end
