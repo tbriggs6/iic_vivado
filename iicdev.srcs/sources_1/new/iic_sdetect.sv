@@ -28,6 +28,7 @@ always @(posedge clk) begin
     if (aresetn == 0) begin
         start_detected <= 0;
         stop_detected <= 0;
+        last_sda <= sda;
     end
     else begin
         if ((scl == 1) && (last_sda == 1) && (sda == 0))

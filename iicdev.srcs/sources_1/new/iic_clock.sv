@@ -33,30 +33,36 @@ module iic_clock #(  parameter WIDTH=10 ) (
 
 
 logic [WIDTH-1:0] clock_count = 0;
-logic last_clock_reset = 0;
 logic clock_output_value = 0;
 
 always @(posedge clk) begin
     if (aresetn == 0) begin
         clock_count <= divider.clock_divider;
-        last_clock_reset <= 0;
         clock_output_value <= 0;
     end else begin
         
-        if ((controller.clock_reset == 1) && (last_clock_reset == 0)) begin 
+        if (controller.clock_reset == 1)  begin 
             clock_count <= divider.clock_divider;
         end 
+        
+        // the clock expired....
         else if (clock_count == 0) begin
-            clock_output_value <= ~clock_output_value;
-            if (controller.clock_restart == 1)
-                clock_count <= divider.clock_divider;
-        end 
-        else begin 
+            // we haven't seen this clock expiration before
+            if (controller.clock_done == 0) begin
+                controller.clock_done <= 1; 
+                if (controller.clock_restart == 1)
+                    clock_count <= divider.clock_divider;
+                    controller.clock_out <= ~controller.clock_out;
+            end
+        end
+            
+        else begin
+            if ((controller.clock_restart == 1) && (controller.clock_done == 1))
+                controller.clock_done <= 0;
+  
             clock_count <= clock_count - 1;
         end
-        
-        last_clock_reset <= controller.clock_reset;    
-                                    
+                                            
     end // else not reset           
 end // always         
 
