@@ -54,7 +54,6 @@ interface clock_regs_bus #(parameter WIDTH=10);
 endinterface
 
 
-`include "iic_control_enums.sv"
 import control_enums::*;
 
 interface control_driver_bus;
@@ -152,6 +151,33 @@ interface control_sgen_bus;
 endinterface
 
 
+interface control_txreg_bus;
+    logic done;
+    logic enable;
+    
+    modport ctrl(output enable, input done, 
+        import control_reset, set_enable);
+    modport treg(input enable, output done,
+        import txreg_reset, set_done);
+     
+     task control_reset();
+        enable <= 0;
+     endtask
+     
+     task set_enable(bit value);
+        enable <= value;
+     endtask
+     
+     task txreg_reset( );
+        done <= 0;
+     endtask
+     
+     task set_done(bit value);
+        done <= value;
+     endtask
+     
+endinterface
+
 interface driver_sgen_bus;
     wire scl;
     wire sda;
@@ -160,4 +186,32 @@ interface driver_sgen_bus;
     modport drvr (input scl, sda);
 endinterface
 
-         
+interface driver_txreg_bus;
+    wire scl;
+    wire sda;
+    
+    modport treg (output scl, sda);
+    modport drvr (input scl, sda); 
+endinterface
+
+interface register_txreg_bus;
+    wire [7:0] data;
+    wire wren;
+    logic wrack;
+    wire full;
+
+    modport regs(output data, wren, input wrack, full);
+    modport treg(input data, wren, output wrack, full,
+        import txreg_reset, set_wrack);
+
+    task txreg_reset( );
+        wrack <= 0;
+    endtask
+    
+    task set_wrack(bit value);
+        wrack <= value;
+    endtask
+    
+endinterface
+    
+        

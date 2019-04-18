@@ -4,8 +4,6 @@
 
 typedef enum logic[6:0] { OFF, IDLE, MASTER_START, MASTER_SEND_ADDR, SLAVE_START } iic_ctrl_state_t;
 
-`include "iic_control_enums.sv"
-
 import control_enums::*;
 
 // iic_control uses other device interfaces
