@@ -1,53 +1,68 @@
 `timescale 1ns / 1ps
 `default_nettype none
 
+
 typedef enum logic[6:0] { OFF, IDLE, MASTER_START, MASTER_SEND_ADDR, SLAVE_START } iic_ctrl_state_t;
+
+`include "iic_control_enums.sv"
+
+import control_enums::*;
 
 // iic_control uses other device interfaces
 module iic_control(
     input wire clk, aresetn,
     
     clock_control_bus.ctrl clkd,
-    control_driver_bus.ctrl driver,
+    control_driver_bus.ctrl drvr,
     control_regs_bus.ctrl regs,
-    control_sdetect_bus.ctrl serial
+    control_sdetect_bus.ctrl sdet,
+    control_sgen_bus.ctrl sgen
     );
     
+
 iic_ctrl_state_t state = OFF;
     
 always @(posedge clk) begin
     if (aresetn == 0) begin
         state <= OFF;
         
-        clkd.reset <= 0;
-        clkd.restart <= 0;
-        clkd.out_enable <= 0;
-            
+        clkd.control_reset();        
+        sgen.control_reset();
+        
     end else if (regs.on == 0) state <= OFF;                
     else case(state)
-    OFF:
+    OFF: begin
+        drvr.set_source(SRC_OFF);
         if (regs.on == 1) state <= IDLE;
         else state <= OFF;
-        
-    IDLE:
+    end
+    
+    IDLE: begin
+        drvr.set_source(SRC_OFF);
         if (regs.start == 1) begin
             state <= MASTER_START;
-            clkd.reset <= 1;
-            clkd.restart <= 0;
+            clkd.set_reset(1);
+            clkd.set_restart(0);
         end
-        else if (sdetect.start_detected == 1) state <= SLAVE_START;
+        else if (sdet.start_detected == 1) state <= SLAVE_START;
         else state <= IDLE;
-        
+    end
+    
     MASTER_START: begin
-        if (sclk.clock_done == 1) 
+        if (clkd.done == 1) 
             state <= MASTER_SEND_ADDR;
              
-        sgen.gen_start <= 1;
-        sclk.clock_reset <= 0;
+        sgen.set_gen_start();
+        drvr.set_source(SRC_SGEN);
+        
+        clkd.set_reset(0);
     end
     
     MASTER_SEND_ADDR: begin
         state <= MASTER_SEND_ADDR;
+        sgen.control_reset();
+        drvr.set_source(SRC_TXBUF);
+        
     end
            
            

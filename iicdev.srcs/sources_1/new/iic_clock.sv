@@ -21,20 +21,19 @@ always @(posedge clk) begin
         clock_count <= regs.divider;
         scl <= 1;
         
-        ctrl.done <= 0;
-        
+        ctrl.clock_reset();
     end else begin
         
         if (ctrl.reset == 1)  begin 
             clock_count <= regs.divider;
-            ctrl.done <= 0;
+            ctrl.clock_reset();
         end 
         
         // the clock expired....
         else if (clock_count == 0) begin
             // we haven't seen this clock expiration before
             if (ctrl.done == 0) begin
-                ctrl.done <= 1;
+                ctrl.clock_done();
                 scl <= ~scl;
                 
                 if (ctrl.restart == 1) begin
@@ -45,7 +44,7 @@ always @(posedge clk) begin
             
         else begin
             if ((ctrl.restart == 1) && (ctrl.done == 1))
-                ctrl.done <= 0;
+                ctrl.clock_reset();
             
             clock_count <= clock_count - 1;
         end

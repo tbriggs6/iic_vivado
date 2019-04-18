@@ -3,8 +3,8 @@
 
 module sim_iic_sdetect( );
 
-logic clk, aresetn, scl, sda;
-iic_sdetect_if detector();
+logic clk, aresetn, iic_scl, iic_sda;
+control_sdetect_bus sdet();
 
 iic_sdetect uut( .* );
 
@@ -15,18 +15,18 @@ end
 
 
 assert property
-    (@(posedge clk) ((scl == 1) && ($fell(sda))) |-> ##1 ($rose(detector.start_detected)))
+    (@(posedge clk) ((iic_scl == 1) && ($fell(iic_sda))) |-> ##1 ($rose(sdet.start_detected)))
          else $fatal("Error - not detect start");
     
 
 
 initial begin
     aresetn = 0;
-    scl = 1;
-    sda = 1;
+    iic_scl = 1;
+    iic_sda = 1;
     #10;
     aresetn = 1;
-    sda = 0;
+    iic_sda = 0;
     #10;
     $finish;
 end

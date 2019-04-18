@@ -6,9 +6,31 @@ interface clock_control_bus;
     logic restart, reset, done;
     wire scl;
     
-    modport clk  (input reset, restart, output done, scl);
-    modport ctrl (output reset, restart, input done, scl);
+    modport clk  (input reset, restart, output done, scl,
+        import clock_reset, clock_done);
+    modport ctrl (output reset, restart, input done, scl,
+        import control_reset, set_reset, set_restart);
     
+    task clock_reset();
+        done <= 0;
+    endtask
+    
+    task clock_done( );
+        done <= 1;
+    endtask
+    
+    task control_reset();
+        restart <= 0;
+        reset <= 0;
+    endtask
+    
+    task set_reset(bit val);
+        reset <= val;
+    endtask
+    
+    task set_restart(bit val);
+        restart <= val;
+    endtask
 endinterface
 
 interface clock_driver_bus;
@@ -20,21 +42,45 @@ interface clock_driver_bus;
 endinterface
 
 interface clock_regs_bus #(parameter WIDTH=10);
-    wire [WIDTH-1:0] divider;
+    logic [WIDTH-1:0] divider;
     
     modport clk  (input divider);
-    modport regs (output divider);
+    modport regs (output divider, import regs_reset);
+    
+    task regs_reset( );
+        divider <= 0;
+    endtask
     
 endinterface
 
 
+`include "iic_control_enums.sv"
+import control_enums::*;
 
 interface control_driver_bus;
-    wire src_clock;
-    wire src_sgen;
+    logic src_sgen;
+    logic src_txbuf;
+    import control_enums::*;
+      
+    modport ctrl  (output src_sgen, src_txbuf,
+        import control_reset, set_source);
+        
+    modport drvr (input src_sgen, src_txbuf);
     
-    modport ctrl  (output src_clock, src_sgen);
-    modport drvr (input src_clock, src_sgen);
+    task control_reset();
+        src_sgen <= 0;
+        src_txbuf <= 0;
+    endtask
+    
+    task set_source(clock_source_t src);
+        src_sgen <= 0;
+        src_txbuf <= 0;
+        case(src)
+        SRC_SGEN: src_sgen <= 1; 
+        SRC_TXBUF: src_txbuf <= 1;
+        endcase
+    endtask
+    
 endinterface
 
 
@@ -42,25 +88,66 @@ endinterface
 
 // interface between control unit and register file
 interface control_regs_bus;
-    wire on, start, busy;
+    logic on, start;
+    wire busy;
     
     modport ctrl (input on, start, output busy );
     modport regs (output on, start, input busy );
+    
+    task regs_reset();
+        on <= 0;
+        start <= 0;
+    endtask
+    
 endinterface
 
 interface control_sdetect_bus;
-    wire start_detected, stop_detected;
+    logic start_detected, stop_detected;
     
     modport ctrl (input start_detected, stop_detected);
-    modport sdet (output start_detected, stop_detected);
+    modport sdet (output start_detected, stop_detected, 
+        import sdetect_reset, set_start_detected, set_stop_detected);
+    
+    
+    task sdetect_reset();
+        start_detected <= 0;
+        stop_detected <= 0;
+    endtask
+    
+    task set_start_detected();
+        start_detected <= 1;
+        stop_detected <= 0;
+    endtask
+    
+    task set_stop_detected();
+        stop_detected <= 1;
+        start_detected <= 0;
+    endtask
+    
 endinterface 
 
 
 interface control_sgen_bus;
     logic gen_start, gen_stop;
     
-    modport ctrl (output gen_start, gen_stop);
+    modport ctrl (output gen_start, gen_stop,  
+        import control_reset, set_gen_start, set_gen_stop);
     modport sgen (input gen_start, gen_stop);
+    
+    task control_reset( );
+        gen_start <= 0;
+        gen_stop <= 0;
+    endtask
+    
+    task set_gen_start();
+        gen_start <= 1;
+        gen_stop <= 0;
+    endtask;
+    
+    task set_gen_stop();
+        gen_start <= 0;
+        gen_stop <= 1;
+    endtask;
     
 endinterface
 
