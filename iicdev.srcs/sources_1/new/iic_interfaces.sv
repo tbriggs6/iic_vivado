@@ -1,6 +1,102 @@
 `timescale 1ns / 1ps
 `default_nettype none
 
+interface ackdet_control_bus;
+    logic ack_detected;
+    logic ack_nack;
+    logic enabled;
+    
+    modport ctrl (input ack_detected, ack_nack, output enabled,
+        import ctrl_reset, set_enabled);
+    modport adet (output ack_detected, ack_nack, input enabled,
+        import adet_reset, detected);
+    
+    task ctrl_reset( );
+        enabled <= 0;
+    endtask
+    
+    task set_enabled(bit val);
+        enabled <= val;
+    endtask
+    
+    
+    task adet_reset( );
+        ack_detected <= 0;
+        ack_nack <= 0;
+    endtask
+    
+    task detected(bit acknack);
+        ack_detected <= 1;
+        ack_nack <= acknack;
+    endtask        
+endinterface
+
+interface ackdet_register_bus;
+    logic ack_detected;
+    logic ack_nack;
+    
+    modport regs (input ack_detected, ack_nack);
+    modport adet (output ack_detected, ack_nack,
+        import adet_reset, detected);
+    
+    task adet_reset( );
+        ack_detected <= 0;
+        ack_nack <= 0;
+    endtask
+    
+    task detected(bit acknack);
+        ack_detected <= 1;
+        ack_nack <= acknack;
+    endtask        
+    
+    
+endinterface
+
+interface ackgen_control_bus;
+    logic stretch;
+    
+    modport agen (input stretch);
+    modport ctrl (output stretch,
+        import ctrl_reset, set_stretch);
+    
+    task ctrl_reset( );
+        stretch <= 0;
+    endtask
+
+    task set_stretch(bit value);
+        stretch <= value;
+    endtask
+        
+endinterface     
+
+
+interface ackgen_driver_bus;
+    wire scl;
+    wire sda;
+    
+    modport agen (output scl, sda);
+    modport drvr (input scl, sda);
+endinterface
+
+
+interface ackgen_registers_bus;
+    logic ack_nack;
+     
+    modport agen (input ack_nack);
+    modport regs (output ack_nack,
+        import regs_reset, set_acknack);
+    
+    task regs_reset( );
+        ack_nack <= 0;
+    endtask
+    
+    task set_acknack(bit value);
+        ack_nack <= value;
+    endtask
+endinterface     
+
+
+
 /** Style requirement: bus names are alphabetical */
 interface clock_control_bus;
     logic restart, reset, done;
@@ -55,6 +151,7 @@ endinterface
 
 
 import control_enums::*;
+
 
 interface control_driver_bus;
     logic src_sgen;
@@ -224,6 +321,9 @@ interface driver_txreg_bus;
     modport treg (output scl, sda);
     modport drvr (input scl, sda); 
 endinterface
+
+
+
 
 interface register_rxreg_bus;
     logic [7:0] data;

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="sim_iic_ackgen_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="sim_iic_ackgen" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="7333333fs"></ZoomStartTime>
+      <ZoomEndTime time="21333334fs"></ZoomEndTime>
+      <Cursor1Time time="19000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="236"></NameColumnWidth>
+      <ValueColumnWidth column_width="74"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="5" />
+   <wvobject fp_name="group111" type="group">
+      <obj_property name="label">SIM</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_ackgen/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_ackgen/aresetn" type="logic">
+         <obj_property name="ElementShortName">aresetn</obj_property>
+         <obj_property name="ObjectShortName">aresetn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_ackgen/iic_sda" type="logic">
+         <obj_property name="ElementShortName">iic_sda</obj_property>
+         <obj_property name="ObjectShortName">iic_sda</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_ackgen/iic_scl" type="logic">
+         <obj_property name="ElementShortName">iic_scl</obj_property>
+         <obj_property name="ObjectShortName">iic_scl</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group110" type="group">
+      <obj_property name="label">UUT</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/sim_iic_ackgen/uut/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_ackgen/uut/aresetn" type="logic">
+         <obj_property name="ElementShortName">aresetn</obj_property>
+         <obj_property name="ObjectShortName">aresetn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_ackgen/uut/iic_scl" type="logic">
+         <obj_property name="ElementShortName">iic_scl</obj_property>
+         <obj_property name="ObjectShortName">iic_scl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_ackgen/uut/iic_sda" type="logic">
+         <obj_property name="ElementShortName">iic_sda</obj_property>
+         <obj_property name="ObjectShortName">iic_sda</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_ackgen/uut/scl" type="logic">
+         <obj_property name="ElementShortName">scl</obj_property>
+         <obj_property name="ObjectShortName">scl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_ackgen/uut/sda" type="logic">
+         <obj_property name="ElementShortName">sda</obj_property>
+         <obj_property name="ObjectShortName">sda</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group113" type="group">
+      <obj_property name="label">ackgen-&gt;control</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/sim_iic_ackgen/ctrl/stretch" type="logic">
+         <obj_property name="ElementShortName">stretch</obj_property>
+         <obj_property name="ObjectShortName">stretch</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group116" type="group">
+      <obj_property name="label">ackgen-&gt;drvr</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/sim_iic_ackgen/drvr/scl" type="logic">
+         <obj_property name="ElementShortName">scl</obj_property>
+         <obj_property name="ObjectShortName">scl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_ackgen/drvr/sda" type="logic">
+         <obj_property name="ElementShortName">sda</obj_property>
+         <obj_property name="ObjectShortName">sda</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group118" type="group">
+      <obj_property name="label">ackgen-&gt;regs</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/sim_iic_ackgen/regs/ack_nack" type="logic">
+         <obj_property name="ElementShortName">ack_nack</obj_property>
+         <obj_property name="ObjectShortName">ack_nack</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>
