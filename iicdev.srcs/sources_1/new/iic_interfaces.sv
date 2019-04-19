@@ -132,11 +132,12 @@ interface control_rxreg_bus;
     logic enable;
     
     modport ctrl(output enable, input done, 
-        import control_reset, set_enable);
+        import ctrl_reset, set_enable);
+        
     modport rreg(input enable, output done,
-        import rxreg_reset, set_done);
+        import rreg_reset, set_done);
      
-     task control_reset();
+     task ctrl_reset();
         enable <= 0;
      endtask
      
@@ -144,7 +145,7 @@ interface control_rxreg_bus;
         enable <= value;
      endtask
      
-     task txreg_reset( );
+     task rreg_reset( );
         done <= 0;
      endtask
      
@@ -207,6 +208,7 @@ interface control_txreg_bus;
      
 endinterface
 
+
 interface driver_sgen_bus;
     wire scl;
     wire sda;
@@ -224,17 +226,26 @@ interface driver_txreg_bus;
 endinterface
 
 interface register_rxreg_bus;
-    wire [7:0] data;
-    wire rden;
+    logic [7:0] data;
+    logic rden;
     logic rdack;
-    wire full;
+    logic full;
     
-    modport regs(input data, rdack, full, output rden);
-    modport rreg(input rden, output data, rdack, full);
+    modport regs(input data, rdack, full, output rden,
+        import regs_reset);
+    modport rreg(input rden, data, output rdack, full,
+        import rreg_reset);
+    
+    task regs_reset( );
+        rden <= 0;
+    endtask
     
     task rreg_reset( );
         rdack <= 0;
-    endtask;
+        data <= 0;
+        full <= 0;
+    endtask
+    
 endinterface
 
 interface register_txreg_bus;
