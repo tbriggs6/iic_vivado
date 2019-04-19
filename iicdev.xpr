@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="39" Path="C:/vivado/iic/iicdev/iicdev.xpr">
+<Project Version="7" Minor="39" Path="C:/Users/tbriggs/vivado/vivado-iic/iicdev.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="b47eb05ecf544b3190606677d4dd45b6"/>
@@ -115,6 +115,13 @@
         </FileInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/new/iic_txreg.sv">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/iic_rxreg.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -241,6 +248,7 @@
       </Config>
     </FileSet>
     <FileSet Name="sim_iic_txreg" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_iic_txreg">
+      <Filter Type="Srcs"/>
       <File Path="$PSRCDIR/sim_iic_txreg/imports/new/sim_iic_txreg.sv">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PSRCDIR/sim_iic_control/new/sim_iic_txreg.sv"/>

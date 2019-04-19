@@ -126,6 +126,35 @@ interface control_sdetect_bus;
 endinterface 
 
 
+
+interface control_rxreg_bus;
+    logic done;
+    logic enable;
+    
+    modport ctrl(output enable, input done, 
+        import control_reset, set_enable);
+    modport rreg(input enable, output done,
+        import rxreg_reset, set_done);
+     
+     task control_reset();
+        enable <= 0;
+     endtask
+     
+     task set_enable(bit value);
+        enable <= value;
+     endtask
+     
+     task txreg_reset( );
+        done <= 0;
+     endtask
+     
+     task set_done(bit value);
+        done <= value;
+     endtask
+     
+endinterface
+
+
 interface control_sgen_bus;
     logic gen_start, gen_stop;
     
@@ -192,6 +221,20 @@ interface driver_txreg_bus;
     
     modport treg (output scl, sda);
     modport drvr (input scl, sda); 
+endinterface
+
+interface register_rxreg_bus;
+    wire [7:0] data;
+    wire rden;
+    logic rdack;
+    wire full;
+    
+    modport regs(input data, rdack, full, output rden);
+    modport rreg(input rden, output data, rdack, full);
+    
+    task rreg_reset( );
+        rdack <= 0;
+    endtask;
 endinterface
 
 interface register_txreg_bus;
