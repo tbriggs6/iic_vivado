@@ -156,24 +156,30 @@ import control_enums::*;
 interface control_driver_bus;
     logic src_sgen;
     logic src_txbuf;
+    logic src_agen;
+    
     import control_enums::*;
       
-    modport ctrl  (output src_sgen, src_txbuf,
+    modport ctrl  (output src_sgen, src_txbuf, src_agen,
         import control_reset, set_source);
         
-    modport drvr (input src_sgen, src_txbuf);
+    modport drvr (input src_sgen, src_txbuf, src_agen);
     
     task control_reset();
         src_sgen <= 0;
         src_txbuf <= 0;
+        src_agen <= 0;
     endtask
     
     task set_source(clock_source_t src);
         src_sgen <= 0;
         src_txbuf <= 0;
+        src_agen <= 0;
+        
         case(src)
         SRC_SGEN: src_sgen <= 1; 
         SRC_TXBUF: src_txbuf <= 1;
+        SRC_AGEN: src_agen <= 1;
         endcase
     endtask
     
@@ -196,32 +202,6 @@ interface control_regs_bus;
     endtask
     
 endinterface
-
-interface control_sdetect_bus;
-    logic start_detected, stop_detected;
-    
-    modport ctrl (input start_detected, stop_detected);
-    modport sdet (output start_detected, stop_detected, 
-        import sdetect_reset, set_start_detected, set_stop_detected);
-    
-    
-    task sdetect_reset();
-        start_detected <= 0;
-        stop_detected <= 0;
-    endtask
-    
-    task set_start_detected();
-        start_detected <= 1;
-        stop_detected <= 0;
-    endtask
-    
-    task set_stop_detected();
-        stop_detected <= 1;
-        start_detected <= 0;
-    endtask
-    
-endinterface 
-
 
 
 interface control_rxreg_bus;
@@ -251,6 +231,33 @@ interface control_rxreg_bus;
      endtask
      
 endinterface
+
+interface control_sdetect_bus;
+    logic start_detected, stop_detected;
+    
+    modport ctrl (input start_detected, stop_detected);
+    modport sdet (output start_detected, stop_detected, 
+        import sdetect_reset, set_start_detected, set_stop_detected);
+    
+    
+    task sdetect_reset();
+        start_detected <= 0;
+        stop_detected <= 0;
+    endtask
+    
+    task set_start_detected();
+        start_detected <= 1;
+        stop_detected <= 0;
+    endtask
+    
+    task set_stop_detected();
+        stop_detected <= 1;
+        start_detected <= 0;
+    endtask
+    
+endinterface 
+
+
 
 
 interface control_sgen_bus;

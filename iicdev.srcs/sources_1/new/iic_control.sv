@@ -6,15 +6,19 @@ typedef enum logic[6:0] { OFF, IDLE, MASTER_START, MASTER_SEND_ADDR, SLAVE_START
 
 import control_enums::*;
 
+
 // iic_control uses other device interfaces
 module iic_control(
     input wire clk, aresetn,
-    
+    ackdet_control_bus adet,
+    ackgen_control_bus agen,
     clock_control_bus.ctrl clkd,
     control_driver_bus.ctrl drvr,
     control_regs_bus.ctrl regs,
+    control_rxreg_bus.ctrl rreg,
     control_sdetect_bus.ctrl sdet,
-    control_sgen_bus.ctrl sgen
+    control_sgen_bus.ctrl sgen,
+    control_txreg_bus.ctrl treg
     );
     
 

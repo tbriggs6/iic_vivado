@@ -1,24 +1,6 @@
 `timescale 1ns / 1ps
 `default_nettype none
 
-interface iic_regs_ctrl_if #(parameter DIV_WIDTH=10) ( );
-    logic on, start;
-    logic [DIV_WIDTH-1:0] divider;
-    
-    modport ctrl (input on, start);
-    modport sclk (input divider);
-    
-    modport regs (output on, start, divider);
-endinterface
-
-interface iic_regs_axi_if( );
-    logic [3:0] regnum;
-    logic [15:0] regval;
-    logic rdnwr;
-    
-    modport axi (input regnum, input rdnwr, inout regval);
-    modport regs (output regnum, rdnwr, inout regval);
-endinterface
 
 module iic_regs(
     input wire clk,
