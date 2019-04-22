@@ -10,8 +10,8 @@ import control_enums::*;
 // iic_control uses other device interfaces
 module iic_control(
     input wire clk, aresetn,
-    ackdet_control_bus adet,
-    ackgen_control_bus agen,
+    ackdet_control_bus.ctrl adet,
+    ackgen_control_bus.ctrl agen,
     clock_control_bus.ctrl clkd,
     control_driver_bus.ctrl drvr,
     control_regs_bus.ctrl regs,

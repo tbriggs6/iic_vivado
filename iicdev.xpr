@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="39" Path="C:/vivado/iic/iicdev/iicdev.xpr">
+<Project Version="7" Minor="39" Path="C:/Users/tbriggs/vivado/vivado-iic/iicdev.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="b47eb05ecf544b3190606677d4dd45b6"/>
@@ -58,6 +58,16 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
+      <File Path="$PSRCDIR/sources_1/imports/vivado/axi_slave_if.sv">
+        <FileInfo>
+          <Attr Name="IsGlobalInclude" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../axi_slave_if.sv"/>
+          <Attr Name="ImportTime" Val="1555889671"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/new/iic_sdetect.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -151,7 +161,7 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="iic_control"/>
+        <Option Name="TopModule" Val="iic_top"/>
       </Config>
     </FileSet>
     <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
@@ -295,6 +305,7 @@
       </Config>
     </FileSet>
     <FileSet Name="sim_iic_rxreg" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_iic_rxreg">
+      <Filter Type="Srcs"/>
       <File Path="$PSRCDIR/sim_iic_rxreg/new/sim_iic_rxreg.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -317,6 +328,7 @@
       </Config>
     </FileSet>
     <FileSet Name="sim_iic_adetect" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_iic_adetect">
+      <Filter Type="Srcs"/>
       <File Path="$PSRCDIR/sim_iic_adetect/new/sim_iic_adetect.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -340,6 +352,7 @@
       </Config>
     </FileSet>
     <FileSet Name="sim_iic_ackgen" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_iic_ackgen">
+      <Filter Type="Srcs"/>
       <File Path="$PSRCDIR/sim_iic_ackgen/new/sim_iic_ackgen.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>

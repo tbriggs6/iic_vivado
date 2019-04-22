@@ -1,11 +1,34 @@
 `timescale 1ns / 1ps
 `default_nettype none
 
+
+
+import axi_bus::*;
+
+class iic_axi_bus extends axi_slave;
+
+virtual task handle_reset( ); 
+    $display("Handle reset");
+endtask
+
+virtual task handle_write(input integer regnum, input integer value); 
+    $display("Handle Write %d %d", regnum, value);
+endtask
+
+virtual function integer handle_read(input integer regnum); 
+    $display("Handle read %d", regnum);
+    handle_read = 0;
+endfunction
+
+endclass
+
 module iic_top(
     input wire clk,
     input wire aresetn,
     inout wire iic_sda,
-    inout wire iic_scl
+    inout wire iic_scl,
+    
+    axi_slave_if axi
     );
     
     
@@ -77,23 +100,24 @@ module iic_top(
     wire drvr_iic_sda, drvr_iic_scl;
     
     iic_driver_mux driver_mux (
-        .clk(clk), .aresetn(aresetn),
         .iic_sda(drvr_iic_sda), 
         .iic_scl(drvr_iic_scl),
         .enabled(enabled),
         .sclk(clk2drvr), 
         .ctrl(ctrl2drvr),
-        .sgen(drvr2sgen)
+        .agen(agen2drvr),
+        .sgen(drvr2sgen),
+        .treg(drvr2treg)
     );
 
     
-    iic_rxreg rxreg (
-        .clk(clk), .aresetn(aresetn),
-        .iic_scl(iic_scl), 
-        .iic_sda(iic_sda),
-        .ctrl(ctrl2rreg), 
-        .regs(regs2rreg)
-        );
+//    iic_rxreg rxreg (
+//        .clk(clk), .aresetn(aresetn),
+//        .iic_scl(iic_scl), 
+//        .iic_sda(iic_sda),
+//        .ctrl(ctrl2rreg), 
+//        .regs(regs2rreg)
+//        );
         
         
     iic_sdetect sdetect (

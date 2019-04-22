@@ -340,7 +340,7 @@ interface register_rxreg_bus;
     
     modport regs(input data, rdack, full, output rden,
         import regs_reset);
-    modport rreg(input rden, data, output rdack, full,
+    modport rreg(input rden, output data, rdack, full,
         import rreg_reset);
     
     task regs_reset( );

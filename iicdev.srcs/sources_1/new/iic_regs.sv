@@ -6,32 +6,30 @@ module iic_regs(
     input wire clk,
     input wire aresetn,
     
-    iic_regs_axi_if.axi axi,    
-    iic_regs_ctrl_if.regs ctrl
+    
+    // recieves ack_detected, ack_nack from
+    // iic bus
+    ackdet_register_bus.regs adet,
+    
+    // sources ack_nack to bus
+    ackgen_registers_bus.regs agen,
+    
+    // sources divider to clock unit
+    clock_regs_bus.regs dclk,
+    
+    // sources logic and start to control;
+    // receives busy;
+    control_regs_bus.regs ctrl,
+    
+    //  drives rden to rxreg,
+    // receives data, rdack, and full
+    register_rxreg_bus.regs rreg,
+    
+    // drives data, wren to txreg
+    // receives wrack, and full from txreg
+    register_txreg_bus.regs treg    
     );
     
-    localparam NUM_REGS = 8;
-    
-    logic [15:0] regs[(NUM_REGS-1):0];
-    
-    always @(posedge clk) begin
-    if (aresetn == 0) begin
-        for (int i = 0; i < NUM_REGS; i++)
-            regs[i] <= 0;
-    end
-    else begin
-    // handle a read
-    if (axi.rdnwr == 1) begin
-        if (axi.regnum >= NUM_REGS) axi.regval <= 16'd0;
-        else axi.regval <= regs[ axi.regnum];
-    end else begin
-        if (axi.regnum <= NUM_REGS) begin 
-            $display("REGWR: reg[%d] = %x", regnum, regval);
-            regs[axi.regnum] <= axi.regval;
-        end
-    end // end else
-    end // not reset
-    end // always 
-
+   
     
 endmodule
