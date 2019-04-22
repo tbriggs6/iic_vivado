@@ -7,11 +7,11 @@ interface ackdet_control_bus;
     logic enabled;
     
     modport ctrl (input ack_detected, ack_nack, output enabled,
-        import ctrl_reset, set_enabled);
+        import control_reset, set_enabled);
     modport adet (output ack_detected, ack_nack, input enabled,
         import adet_reset, detected);
     
-    task ctrl_reset( );
+    task control_reset( );
         enabled <= 0;
     endtask
     
@@ -57,9 +57,9 @@ interface ackgen_control_bus;
     
     modport agen (input stretch);
     modport ctrl (output stretch,
-        import ctrl_reset, set_stretch);
+        import control_reset, set_stretch);
     
-    task ctrl_reset( );
+    task control_reset( );
         stretch <= 0;
     endtask
 
@@ -190,16 +190,26 @@ endinterface
 
 // interface between control unit and register file
 interface control_regs_bus;
-    logic on, start;
+    wire on;
+    wire start, restart, stop;
+    wire clr_start, clr_restart, clr_stop;
+    
+    wire rcen, acken, sclrel;
+    wire clr_rcen, clr_acken, clr_sclrel;
+    
+    wire ackdet;
+    wire stren, a10m;
+    wire dhen, ahen; 
     wire busy;
     
-    modport ctrl (input on, start, output busy );
-    modport regs (output on, start, input busy );
+    wire slv_rdnwr, slv_dna, slv_acktim;
+    wire ack_det;
     
-    task regs_reset();
-        on <= 0;
-        start <= 0;
-    endtask
+    modport ctrl (input on, start, restart, stop, rcen, acken, ackdet, stren, a10m, sclrel, dhen, ahen, 
+            output busy, clr_start, clr_restart, clr_stop, clr_rcen, clr_acken, clr_sclrel, slv_rdnwr, slv_dna, slv_acktim, ack_det);
+            
+    modport regs (output on, start, restart, stop, rcen, acken, ackdet, stren, a10m, sclrel, dhen, ahen, 
+            input busy, clr_start, clr_restart, clr_stop, clr_rcen, clr_acken, clr_sclrel, slv_rdnwr, slv_dna, slv_acktim, ack_det );
     
 endinterface
 
@@ -209,12 +219,12 @@ interface control_rxreg_bus;
     logic enable;
     
     modport ctrl(output enable, input done, 
-        import ctrl_reset, set_enable);
+        import control_reset, set_enable);
         
     modport rreg(input enable, output done,
         import rreg_reset, set_done);
      
-     task ctrl_reset();
+     task control_reset();
         enable <= 0;
      endtask
      
@@ -337,34 +347,59 @@ interface register_rxreg_bus;
     logic rden;
     logic rdack;
     logic full;
+    logic ovflow;
+    logic clr_ovflow;
     
-    modport regs(input data, rdack, full, output rden,
+    modport regs(input data, rdack, full, ovflow, output rden, clr_ovflow,
         import regs_reset);
-    modport rreg(input rden, output data, rdack, full,
+        
+    modport rreg(input rden, clr_ovflow, output data, rdack, full,
         import rreg_reset);
     
     task regs_reset( );
         rden <= 0;
+        clr_ovflow <= 0;
     endtask
     
     task rreg_reset( );
         rdack <= 0;
         data <= 0;
         full <= 0;
+        ovflow <= 0;
     endtask
     
 endinterface
+
+
+interface register_sdetect_bus;
+    wire start_detected, stop_detected;
+    logic clr_start, clr_stop;
+    
+    modport regs (input start_detected, stop_detected, output clr_start, clr_stop,
+        import regs_reset);
+    modport sdet (output start_detected, stop_detected, input clr_start, clr_stop); 
+    
+    task regs_reset( );
+        clr_start <= 0;
+        clr_stop <= 0;
+    endtask        
+    
+endinterface 
+
+
 
 interface register_txreg_bus;
     wire [7:0] data;
     wire wren;
     logic wrack;
     wire full;
-
-    modport regs(output data, wren, input wrack, full);
-    modport treg(input data, wren, output wrack, full,
+    wire busy;
+    
+    modport regs(output data, wren, input wrack, full, busy);
+    modport treg(input data, wren, output wrack, full, busy,
         import txreg_reset, set_wrack);
 
+    
     task txreg_reset( );
         wrack <= 0;
     endtask
@@ -376,3 +411,19 @@ interface register_txreg_bus;
 endinterface
     
         
+        
+        
+interface register_user_bus;
+    wire [3:0] regnum;
+    wire [31:0] regdata;
+    wire rden;
+    wire wren;
+
+    modport regs(input regnum, rden, wren, inout regdata);
+    modport user(output regnum, rden, wren, inout regdata);
+    
+endinterface          
+            
+            
+            
+            

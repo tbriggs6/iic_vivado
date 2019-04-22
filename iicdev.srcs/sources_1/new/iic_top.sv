@@ -2,33 +2,13 @@
 `default_nettype none
 
 
-
-import axi_bus::*;
-
-class iic_axi_bus extends axi_slave;
-
-virtual task handle_reset( ); 
-    $display("Handle reset");
-endtask
-
-virtual task handle_write(input integer regnum, input integer value); 
-    $display("Handle Write %d %d", regnum, value);
-endtask
-
-virtual function integer handle_read(input integer regnum); 
-    $display("Handle read %d", regnum);
-    handle_read = 0;
-endfunction
-
-endclass
-
 module iic_top(
     input wire clk,
     input wire aresetn,
     inout wire iic_sda,
     inout wire iic_scl,
     
-    axi_slave_if axi
+    register_user_bus.regs user_regs
     );
     
     
@@ -54,8 +34,8 @@ module iic_top(
     driver_txreg_bus drvr2treg();
     
     register_rxreg_bus regs2rreg();
+    register_sdetect_bus regs2sdet();
     register_txreg_bus regs2treg();
-    
     
     iic_control control (
         .clk(clk), .aresetn(aresetn),
@@ -111,6 +91,20 @@ module iic_top(
     );
 
     
+    
+    iic_regs regs (
+        .clk(clk), .aresetn(aresetn),
+        .user_regs(user_regs),
+        .adet(adet2regs),
+        .agen(agen2regs),
+        .dclk(clk2regs),     
+        .ctrl(ctrl2regs),
+        .rreg(regs2rreg),
+        .sdet(regs2sdet),
+        .treg(regs2treg)
+    );        
+    
+    
 //    iic_rxreg rxreg (
 //        .clk(clk), .aresetn(aresetn),
 //        .iic_scl(iic_scl), 
@@ -143,6 +137,8 @@ module iic_top(
         .drvr(drvr2treg)
     );
 
+
+    
     assign iic_sda = (enabled == 1) ? drvr_iic_sda : 1'bz;
     assign iic_scl = (enabled == 1) ? drvr_iic_scl : 1'bz;
     

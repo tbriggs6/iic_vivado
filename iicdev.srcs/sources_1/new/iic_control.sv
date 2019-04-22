@@ -28,8 +28,13 @@ always @(posedge clk) begin
     if (aresetn == 0) begin
         state <= OFF;
         
-        clkd.control_reset();        
+        adet.control_reset();
+        agen.control_reset();
+        clkd.control_reset();
+        drvr.control_reset();
+        rreg.control_reset();        
         sgen.control_reset();
+        treg.control_reset();
         
     end else if (regs.on == 0) state <= OFF;                
     else case(state)

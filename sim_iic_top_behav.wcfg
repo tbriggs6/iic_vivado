@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="sim_iic_top_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="\$unit_iic_control_enums_sv " />
+            <top_module name="control_enums" />
+            <top_module name="glbl" />
+            <top_module name="sim_iic_top" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="964600000fs"></ZoomStartTime>
+      <ZoomEndTime time="1007100001fs"></ZoomEndTime>
+      <Cursor1Time time="1000000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="236"></NameColumnWidth>
+      <ValueColumnWidth column_width="74"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="37" />
+   <wvobject fp_name="/sim_iic_top/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_iic_top/aresetn" type="logic">
+      <obj_property name="ElementShortName">aresetn</obj_property>
+      <obj_property name="ObjectShortName">aresetn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_iic_top/iic_sda" type="logic">
+      <obj_property name="ElementShortName">iic_sda</obj_property>
+      <obj_property name="ObjectShortName">iic_sda</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_iic_top/iic_scl" type="logic">
+      <obj_property name="ElementShortName">iic_scl</obj_property>
+      <obj_property name="ObjectShortName">iic_scl</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider61">
+      <obj_property name="label">UNITS</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="group9" type="group">
+      <obj_property name="label">EXT -&gt; USER_REGS</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/user_regs/regnum" type="array">
+         <obj_property name="ElementShortName">regnum[3:0]</obj_property>
+         <obj_property name="ObjectShortName">regnum[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/user_regs/regdata" type="array">
+         <obj_property name="ElementShortName">regdata[31:0]</obj_property>
+         <obj_property name="ObjectShortName">regdata[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/user_regs/rden" type="logic">
+         <obj_property name="ElementShortName">rden</obj_property>
+         <obj_property name="ObjectShortName">rden</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/user_regs/wren" type="logic">
+         <obj_property name="ElementShortName">wren</obj_property>
+         <obj_property name="ObjectShortName">wren</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group17" type="group">
+      <obj_property name="label">UUT</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/aresetn" type="logic">
+         <obj_property name="ElementShortName">aresetn</obj_property>
+         <obj_property name="ObjectShortName">aresetn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/iic_sda" type="logic">
+         <obj_property name="ElementShortName">iic_sda</obj_property>
+         <obj_property name="ObjectShortName">iic_sda</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/iic_scl" type="logic">
+         <obj_property name="ElementShortName">iic_scl</obj_property>
+         <obj_property name="ObjectShortName">iic_scl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/enabled" type="logic">
+         <obj_property name="ElementShortName">enabled</obj_property>
+         <obj_property name="ObjectShortName">enabled</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/drvr_iic_sda" type="logic">
+         <obj_property name="ElementShortName">drvr_iic_sda</obj_property>
+         <obj_property name="ObjectShortName">drvr_iic_sda</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/drvr_iic_scl" type="logic">
+         <obj_property name="ElementShortName">drvr_iic_scl</obj_property>
+         <obj_property name="ObjectShortName">drvr_iic_scl</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group28" type="group">
+      <obj_property name="label">ACKGEN</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/ackgen/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ackgen/aresetn" type="logic">
+         <obj_property name="ElementShortName">aresetn</obj_property>
+         <obj_property name="ObjectShortName">aresetn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ackgen/iic_scl" type="logic">
+         <obj_property name="ElementShortName">iic_scl</obj_property>
+         <obj_property name="ObjectShortName">iic_scl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ackgen/iic_sda" type="logic">
+         <obj_property name="ElementShortName">iic_sda</obj_property>
+         <obj_property name="ObjectShortName">iic_sda</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ackgen/scl" type="logic">
+         <obj_property name="ElementShortName">scl</obj_property>
+         <obj_property name="ObjectShortName">scl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ackgen/sda" type="logic">
+         <obj_property name="ElementShortName">sda</obj_property>
+         <obj_property name="ObjectShortName">sda</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group34" type="group">
+      <obj_property name="label">ADETECT</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/adetect/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/adetect/aresetn" type="logic">
+         <obj_property name="ElementShortName">aresetn</obj_property>
+         <obj_property name="ObjectShortName">aresetn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/adetect/iic_sda" type="logic">
+         <obj_property name="ElementShortName">iic_sda</obj_property>
+         <obj_property name="ObjectShortName">iic_sda</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/adetect/iic_scl" type="logic">
+         <obj_property name="ElementShortName">iic_scl</obj_property>
+         <obj_property name="ObjectShortName">iic_scl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/adetect/last_iic_scl" type="logic">
+         <obj_property name="ElementShortName">last_iic_scl</obj_property>
+         <obj_property name="ObjectShortName">last_iic_scl</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group38" type="group">
+      <obj_property name="label">CONTROL</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/control/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/control/aresetn" type="logic">
+         <obj_property name="ElementShortName">aresetn</obj_property>
+         <obj_property name="ObjectShortName">aresetn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/control/state" type="array">
+         <obj_property name="ElementShortName">state[6:0]</obj_property>
+         <obj_property name="ObjectShortName">state[6:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group45" type="group">
+      <obj_property name="label">CLOCK</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/clock/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/clock/aresetn" type="logic">
+         <obj_property name="ElementShortName">aresetn</obj_property>
+         <obj_property name="ObjectShortName">aresetn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/clock/clock_count" type="array">
+         <obj_property name="ElementShortName">clock_count[9:0]</obj_property>
+         <obj_property name="ObjectShortName">clock_count[9:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/clock/scl" type="logic">
+         <obj_property name="ElementShortName">scl</obj_property>
+         <obj_property name="ObjectShortName">scl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/clock/sda" type="logic">
+         <obj_property name="ElementShortName">sda</obj_property>
+         <obj_property name="ObjectShortName">sda</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/clock/WIDTH" type="array">
+         <obj_property name="ElementShortName">WIDTH[31:0]</obj_property>
+         <obj_property name="ObjectShortName">WIDTH[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group49" type="group">
+      <obj_property name="label">DRIVER</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/driver_mux/iic_sda" type="logic">
+         <obj_property name="ElementShortName">iic_sda</obj_property>
+         <obj_property name="ObjectShortName">iic_sda</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/driver_mux/iic_scl" type="logic">
+         <obj_property name="ElementShortName">iic_scl</obj_property>
+         <obj_property name="ObjectShortName">iic_scl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/driver_mux/enabled" type="logic">
+         <obj_property name="ElementShortName">enabled</obj_property>
+         <obj_property name="ObjectShortName">enabled</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group55" type="group">
+      <obj_property name="label">REGS</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/regs/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/regs/aresetn" type="logic">
+         <obj_property name="ElementShortName">aresetn</obj_property>
+         <obj_property name="ObjectShortName">aresetn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/regs/registers" type="array">
+         <obj_property name="ElementShortName">registers[31:0][15:0]</obj_property>
+         <obj_property name="ObjectShortName">registers[31:0][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/regs/power_on_vals" type="array">
+         <obj_property name="ElementShortName">power_on_vals[15:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">power_on_vals[15:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/regs/masks" type="array">
+         <obj_property name="ElementShortName">masks[15:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">masks[15:0][31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group62" type="group">
+      <obj_property name="label">SDETECT</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/sdetect/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/sdetect/aresetn" type="logic">
+         <obj_property name="ElementShortName">aresetn</obj_property>
+         <obj_property name="ObjectShortName">aresetn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/sdetect/iic_scl" type="logic">
+         <obj_property name="ElementShortName">iic_scl</obj_property>
+         <obj_property name="ObjectShortName">iic_scl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/sdetect/iic_sda" type="logic">
+         <obj_property name="ElementShortName">iic_sda</obj_property>
+         <obj_property name="ObjectShortName">iic_sda</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/sdetect/last_sda" type="logic">
+         <obj_property name="ElementShortName">last_sda</obj_property>
+         <obj_property name="ObjectShortName">last_sda</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group65" type="group">
+      <obj_property name="label">SGEN</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/sgen/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/sgen/aresetn" type="logic">
+         <obj_property name="ElementShortName">aresetn</obj_property>
+         <obj_property name="ObjectShortName">aresetn</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group72" type="group">
+      <obj_property name="label">TXREG</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/txreg/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/txreg/aresetn" type="logic">
+         <obj_property name="ElementShortName">aresetn</obj_property>
+         <obj_property name="ObjectShortName">aresetn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/txreg/iic_scl" type="logic">
+         <obj_property name="ElementShortName">iic_scl</obj_property>
+         <obj_property name="ObjectShortName">iic_scl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/txreg/last_scl" type="logic">
+         <obj_property name="ElementShortName">last_scl</obj_property>
+         <obj_property name="ObjectShortName">last_scl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/txreg/txreg" type="array">
+         <obj_property name="ElementShortName">txreg[7:0]</obj_property>
+         <obj_property name="ObjectShortName">txreg[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/txreg/state" type="array">
+         <obj_property name="ElementShortName">state[31:0]</obj_property>
+         <obj_property name="ObjectShortName">state[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider78">
+      <obj_property name="label">Interfaces</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">#FF00FF</obj_property>
+   </wvobject>
+   <wvobject fp_name="group77" type="group">
+      <obj_property name="label">user2register</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/user_regs/regnum" type="array">
+         <obj_property name="ElementShortName">regnum[3:0]</obj_property>
+         <obj_property name="ObjectShortName">regnum[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/user_regs/regdata" type="array">
+         <obj_property name="ElementShortName">regdata[31:0]</obj_property>
+         <obj_property name="ObjectShortName">regdata[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/user_regs/rden" type="logic">
+         <obj_property name="ElementShortName">rden</obj_property>
+         <obj_property name="ObjectShortName">rden</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/user_regs/wren" type="logic">
+         <obj_property name="ElementShortName">wren</obj_property>
+         <obj_property name="ObjectShortName">wren</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group82" type="group">
+      <obj_property name="label">ackdet2control</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/adet2ctrl/ack_detected" type="logic">
+         <obj_property name="ElementShortName">ack_detected</obj_property>
+         <obj_property name="ObjectShortName">ack_detected</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/adet2ctrl/ack_nack" type="logic">
+         <obj_property name="ElementShortName">ack_nack</obj_property>
+         <obj_property name="ObjectShortName">ack_nack</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/adet2ctrl/enabled" type="logic">
+         <obj_property name="ElementShortName">enabled</obj_property>
+         <obj_property name="ObjectShortName">enabled</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group85" type="group">
+      <obj_property name="label">ackdet2register</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/adet2regs/ack_nack" type="logic">
+         <obj_property name="ElementShortName">ack_nack</obj_property>
+         <obj_property name="ObjectShortName">ack_nack</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/adet2regs/ack_detected" type="logic">
+         <obj_property name="ElementShortName">ack_detected</obj_property>
+         <obj_property name="ObjectShortName">ack_detected</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group87" type="group">
+      <obj_property name="label">ackgen2control</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/agen2ctrl/stretch" type="logic">
+         <obj_property name="ElementShortName">stretch</obj_property>
+         <obj_property name="ObjectShortName">stretch</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group90" type="group">
+      <obj_property name="label">ackgen2driver</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/agen2drvr/scl" type="logic">
+         <obj_property name="ElementShortName">scl</obj_property>
+         <obj_property name="ObjectShortName">scl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/agen2drvr/sda" type="logic">
+         <obj_property name="ElementShortName">sda</obj_property>
+         <obj_property name="ObjectShortName">sda</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group92" type="group">
+      <obj_property name="label">ackgen2registers</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/agen2regs/ack_nack" type="logic">
+         <obj_property name="ElementShortName">ack_nack</obj_property>
+         <obj_property name="ObjectShortName">ack_nack</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group97" type="group">
+      <obj_property name="label">clock2control</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/clk2ctrl/restart" type="logic">
+         <obj_property name="ElementShortName">restart</obj_property>
+         <obj_property name="ObjectShortName">restart</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/clk2ctrl/reset" type="logic">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/clk2ctrl/done" type="logic">
+         <obj_property name="ElementShortName">done</obj_property>
+         <obj_property name="ObjectShortName">done</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/clk2ctrl/scl" type="logic">
+         <obj_property name="ElementShortName">scl</obj_property>
+         <obj_property name="ObjectShortName">scl</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group100" type="group">
+      <obj_property name="label">clk2driver</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/clk2drvr/scl" type="logic">
+         <obj_property name="ElementShortName">scl</obj_property>
+         <obj_property name="ObjectShortName">scl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/clk2drvr/sda" type="logic">
+         <obj_property name="ElementShortName">sda</obj_property>
+         <obj_property name="ObjectShortName">sda</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group103" type="group">
+      <obj_property name="label">cloc2regs</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/clk2regs/divider" type="array">
+         <obj_property name="ElementShortName">divider[9:0]</obj_property>
+         <obj_property name="ObjectShortName">divider[9:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/clk2regs/WIDTH" type="array">
+         <obj_property name="ElementShortName">WIDTH[31:0]</obj_property>
+         <obj_property name="ObjectShortName">WIDTH[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group107" type="group">
+      <obj_property name="label">control2driver</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2drvr/src_sgen" type="logic">
+         <obj_property name="ElementShortName">src_sgen</obj_property>
+         <obj_property name="ObjectShortName">src_sgen</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2drvr/src_txbuf" type="logic">
+         <obj_property name="ElementShortName">src_txbuf</obj_property>
+         <obj_property name="ObjectShortName">src_txbuf</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2drvr/src_agen" type="logic">
+         <obj_property name="ElementShortName">src_agen</obj_property>
+         <obj_property name="ObjectShortName">src_agen</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group131" type="group">
+      <obj_property name="label">control2registers</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/on" type="logic">
+         <obj_property name="ElementShortName">on</obj_property>
+         <obj_property name="ObjectShortName">on</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/start" type="logic">
+         <obj_property name="ElementShortName">start</obj_property>
+         <obj_property name="ObjectShortName">start</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/restart" type="logic">
+         <obj_property name="ElementShortName">restart</obj_property>
+         <obj_property name="ObjectShortName">restart</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/stop" type="logic">
+         <obj_property name="ElementShortName">stop</obj_property>
+         <obj_property name="ObjectShortName">stop</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/clr_start" type="logic">
+         <obj_property name="ElementShortName">clr_start</obj_property>
+         <obj_property name="ObjectShortName">clr_start</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/clr_restart" type="logic">
+         <obj_property name="ElementShortName">clr_restart</obj_property>
+         <obj_property name="ObjectShortName">clr_restart</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/clr_stop" type="logic">
+         <obj_property name="ElementShortName">clr_stop</obj_property>
+         <obj_property name="ObjectShortName">clr_stop</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/rcen" type="logic">
+         <obj_property name="ElementShortName">rcen</obj_property>
+         <obj_property name="ObjectShortName">rcen</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/acken" type="logic">
+         <obj_property name="ElementShortName">acken</obj_property>
+         <obj_property name="ObjectShortName">acken</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/sclrel" type="logic">
+         <obj_property name="ElementShortName">sclrel</obj_property>
+         <obj_property name="ObjectShortName">sclrel</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/clr_rcen" type="logic">
+         <obj_property name="ElementShortName">clr_rcen</obj_property>
+         <obj_property name="ObjectShortName">clr_rcen</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/clr_acken" type="logic">
+         <obj_property name="ElementShortName">clr_acken</obj_property>
+         <obj_property name="ObjectShortName">clr_acken</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/clr_sclrel" type="logic">
+         <obj_property name="ElementShortName">clr_sclrel</obj_property>
+         <obj_property name="ObjectShortName">clr_sclrel</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/ackdet" type="logic">
+         <obj_property name="ElementShortName">ackdet</obj_property>
+         <obj_property name="ObjectShortName">ackdet</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/stren" type="logic">
+         <obj_property name="ElementShortName">stren</obj_property>
+         <obj_property name="ObjectShortName">stren</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/a10m" type="logic">
+         <obj_property name="ElementShortName">a10m</obj_property>
+         <obj_property name="ObjectShortName">a10m</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/dhen" type="logic">
+         <obj_property name="ElementShortName">dhen</obj_property>
+         <obj_property name="ObjectShortName">dhen</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/ahen" type="logic">
+         <obj_property name="ElementShortName">ahen</obj_property>
+         <obj_property name="ObjectShortName">ahen</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/busy" type="logic">
+         <obj_property name="ElementShortName">busy</obj_property>
+         <obj_property name="ObjectShortName">busy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/slv_rdnwr" type="logic">
+         <obj_property name="ElementShortName">slv_rdnwr</obj_property>
+         <obj_property name="ObjectShortName">slv_rdnwr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/slv_dna" type="logic">
+         <obj_property name="ElementShortName">slv_dna</obj_property>
+         <obj_property name="ObjectShortName">slv_dna</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/slv_acktim" type="logic">
+         <obj_property name="ElementShortName">slv_acktim</obj_property>
+         <obj_property name="ObjectShortName">slv_acktim</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2regs/ack_det" type="logic">
+         <obj_property name="ElementShortName">ack_det</obj_property>
+         <obj_property name="ObjectShortName">ack_det</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group134" type="group">
+      <obj_property name="label">control2rxreg</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2rreg/done" type="logic">
+         <obj_property name="ElementShortName">done</obj_property>
+         <obj_property name="ObjectShortName">done</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2rreg/enable" type="logic">
+         <obj_property name="ElementShortName">enable</obj_property>
+         <obj_property name="ObjectShortName">enable</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group137" type="group">
+      <obj_property name="label">control2sdetect</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2sdet/start_detected" type="logic">
+         <obj_property name="ElementShortName">start_detected</obj_property>
+         <obj_property name="ObjectShortName">start_detected</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2sdet/stop_detected" type="logic">
+         <obj_property name="ElementShortName">stop_detected</obj_property>
+         <obj_property name="ObjectShortName">stop_detected</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group140" type="group">
+      <obj_property name="label">control2sgen</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2sgen/gen_start" type="logic">
+         <obj_property name="ElementShortName">gen_start</obj_property>
+         <obj_property name="ObjectShortName">gen_start</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2sgen/gen_stop" type="logic">
+         <obj_property name="ElementShortName">gen_stop</obj_property>
+         <obj_property name="ObjectShortName">gen_stop</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group143" type="group">
+      <obj_property name="label">control2txgen</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2treg/done" type="logic">
+         <obj_property name="ElementShortName">done</obj_property>
+         <obj_property name="ObjectShortName">done</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/ctrl2treg/enable" type="logic">
+         <obj_property name="ElementShortName">enable</obj_property>
+         <obj_property name="ObjectShortName">enable</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group146" type="group">
+      <obj_property name="label">driver2sgen</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/drvr2sgen/scl" type="logic">
+         <obj_property name="ElementShortName">scl</obj_property>
+         <obj_property name="ObjectShortName">scl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/drvr2sgen/sda" type="logic">
+         <obj_property name="ElementShortName">sda</obj_property>
+         <obj_property name="ObjectShortName">sda</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group149" type="group">
+      <obj_property name="label">driver2txreg</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/drvr2treg/scl" type="logic">
+         <obj_property name="ElementShortName">scl</obj_property>
+         <obj_property name="ObjectShortName">scl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/drvr2treg/sda" type="logic">
+         <obj_property name="ElementShortName">sda</obj_property>
+         <obj_property name="ObjectShortName">sda</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group156" type="group">
+      <obj_property name="label">regs2rxreg</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/regs2rreg/data" type="array">
+         <obj_property name="ElementShortName">data[7:0]</obj_property>
+         <obj_property name="ObjectShortName">data[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/regs2rreg/rden" type="logic">
+         <obj_property name="ElementShortName">rden</obj_property>
+         <obj_property name="ObjectShortName">rden</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/regs2rreg/rdack" type="logic">
+         <obj_property name="ElementShortName">rdack</obj_property>
+         <obj_property name="ObjectShortName">rdack</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/regs2rreg/full" type="logic">
+         <obj_property name="ElementShortName">full</obj_property>
+         <obj_property name="ObjectShortName">full</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/regs2rreg/ovflow" type="logic">
+         <obj_property name="ElementShortName">ovflow</obj_property>
+         <obj_property name="ObjectShortName">ovflow</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/regs2rreg/clr_ovflow" type="logic">
+         <obj_property name="ElementShortName">clr_ovflow</obj_property>
+         <obj_property name="ObjectShortName">clr_ovflow</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group161" type="group">
+      <obj_property name="label">regs2sdetect</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/regs2sdet/start_detected" type="logic">
+         <obj_property name="ElementShortName">start_detected</obj_property>
+         <obj_property name="ObjectShortName">start_detected</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/regs2sdet/stop_detected" type="logic">
+         <obj_property name="ElementShortName">stop_detected</obj_property>
+         <obj_property name="ObjectShortName">stop_detected</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/regs2sdet/clr_start" type="logic">
+         <obj_property name="ElementShortName">clr_start</obj_property>
+         <obj_property name="ObjectShortName">clr_start</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/regs2sdet/clr_stop" type="logic">
+         <obj_property name="ElementShortName">clr_stop</obj_property>
+         <obj_property name="ObjectShortName">clr_stop</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group167" type="group">
+      <obj_property name="label">regs2txreg</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sim_iic_top/uut/regs2treg/data" type="array">
+         <obj_property name="ElementShortName">data[7:0]</obj_property>
+         <obj_property name="ObjectShortName">data[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/regs2treg/wren" type="logic">
+         <obj_property name="ElementShortName">wren</obj_property>
+         <obj_property name="ObjectShortName">wren</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/regs2treg/wrack" type="logic">
+         <obj_property name="ElementShortName">wrack</obj_property>
+         <obj_property name="ObjectShortName">wrack</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/regs2treg/full" type="logic">
+         <obj_property name="ElementShortName">full</obj_property>
+         <obj_property name="ObjectShortName">full</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sim_iic_top/uut/regs2treg/busy" type="logic">
+         <obj_property name="ElementShortName">busy</obj_property>
+         <obj_property name="ObjectShortName">busy</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>
